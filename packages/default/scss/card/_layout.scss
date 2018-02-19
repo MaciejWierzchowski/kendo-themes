@@ -1,0 +1,83 @@
+@include exports("card/layout") {
+
+    $card-border-radius: 16px !default;
+    $card-padding-x: 16px !default;
+    $card-padding-y: 16px !default;
+
+    $card-deck-gutter: 16px !default;
+
+
+    // Card
+    .k-card {
+        @include border-radius( $card-border-radius );
+        border-width: 1px;
+        border-style: solid;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    // Header
+    .k-card-header {
+        padding: $card-padding-y $card-padding-x;
+        border-width: 0 0 1px;
+        border-style: solid;
+        flex: 0 0 auto;
+    }
+
+
+    // Body
+    .k-card-body {
+        padding: $card-padding-y $card-padding-x;
+        flex: 1 1 auto;
+    }
+
+
+    // Deck
+    .k-card-deck {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        flex: 0 0 auto;
+
+        .k-card {
+            flex: 0 0 auto;
+        }
+        .k-card + .k-card {
+            margin-left: $card-deck-gutter;
+        }
+    }
+
+
+    // Group
+    .k-card-group {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        flex: 0 0 auto;
+
+        .k-card {
+            @include border-radius(0);
+            flex: 0 0 auto;
+        }
+        .k-card + .k-card {
+            margin-left: -1px;
+        }
+
+
+        // Border-radius
+        .k-card.k-first {
+            @include border-left-radius( $card-border-radius );
+        }
+        .k-card.k-last {
+            @include border-right-radius( $card-border-radius );
+        }
+        .k-card.k-only {
+            @include border-radius( $card-border-radius );
+        }
+    }
+
+
+}

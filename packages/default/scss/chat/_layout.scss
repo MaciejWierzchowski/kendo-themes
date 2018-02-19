@@ -190,6 +190,15 @@
         flex: 0 0 auto;
         overflow-x: auto;
         overflow-y: hidden;
+        -ms-overflow-style: none;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        &::-moz-scrollbar {
+            // display: none;
+        }
     }
     .k-quick-reply {
         @include border-radius( 100px );
@@ -268,6 +277,48 @@
             }
         }
 
+    }
+
+}
+
+
+
+
+@include exports( "chat/card/layout" ) {
+
+
+    // Cards
+    .k-chat {
+
+        // Card
+        .k-card {
+            max-width: 200px;
+            user-select: none;
+        }
+
+
+        // Deck
+        .k-card-deck {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+
+        // Card group
+        .k-card-group {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
     }
 
 }
