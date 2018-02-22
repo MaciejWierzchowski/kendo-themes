@@ -87,13 +87,10 @@
     // Flat & Bare button
     .k-button.k-flat,
     .k-button.k-bare {
+        box-shadow: none;
 
         &::after {
             border-width: 0;
-        }
-
-        .k-ripple-blob {
-            background-color: rgba($accent, .1);
         }
     }
 
