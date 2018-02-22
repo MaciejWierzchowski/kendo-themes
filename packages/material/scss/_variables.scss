@@ -250,7 +250,7 @@ $button-hovered-text: $button-text !default;
 
 /// The background of hovered buttons.
 /// @group buttons
-$button-hovered-bg: mix( #000, $button-bg, 12%) !default;
+$button-hovered-bg: mix( $button-text, $button-bg, 12%) !default;
 
 /// The border color of hovered buttons.
 /// @group buttons
@@ -267,7 +267,7 @@ $button-pressed-text: $button-text !default;
 
 /// The background color of pressed buttons.
 /// @group buttons
-$button-pressed-bg: mix( #000, $button-bg, 12%) !default;
+$button-pressed-bg: mix( $button-text, $button-bg, 12%) !default;
 
 /// The border color of pressed buttons.
 /// @group buttons
@@ -290,7 +290,7 @@ $primary-button-border: $primary-button-bg !default;
 $primary-button-gradient: rgba( adjust-hue( $primary-button-bg, 14), 0 ), rgba( adjust-hue( $primary-button-bg, 14), .2 ) !default;
 
 $primary-button-hovered-text: $primary-button-text !default;
-$primary-button-hovered-bg: mix( #000, $primary-button-bg, 12%) !default;
+$primary-button-hovered-bg: mix( $primary-button-text, $primary-button-bg, 12%) !default;
 $primary-button-hovered-border: $primary-button-hovered-bg !default;
 $primary-button-hovered-gradient: rgba( adjust-hue( $primary-button-hovered-bg, 14), 0 ), rgba( adjust-hue( $primary-button-hovered-bg, 14), .2 ) !default;
 

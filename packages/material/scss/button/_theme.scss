@@ -4,7 +4,7 @@
     $button-disabled-text: rgba(0, 0, 0, .38) !default;
     $button-disabled-bg: rgba(0, 0, 0, .12) !default;
 
-    $primary-button-focused-bg: mix( #000, $primary-button-bg, 12%) !default;
+    $primary-button-focused-bg: mix( $primary-button-text, $primary-button-bg, 12%) !default;
 
     $flat-button-hovered-bg: rgba($button-text, .12);
     $flat-button-focused-bg: rgba($button-text, .12);
@@ -25,30 +25,49 @@
         @include appearance( button );
         box-shadow: $button-shadow;
         font-weight: 500;
-        transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), background-color 280ms cubic-bezier(.4, 0, .2, 1);
+        transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity 280ms cubic-bezier(.4, 0, .2, 1);
+        }
 
         // Hovered state
         &:hover,
         &.k-state-hover {
-            @include appearance( hovered-button );
+            &::before {
+                opacity: .12;
+            }
         }
 
         // Focused state
         &:focus,
         &.k-state-focused {
-            @include appearance( focused-button );
-            background-color: $button-focused-bg;
+            &::before {
+                opacity: .12;
+            }
         }
-        &.k-no-focus {
-            @include appearance( button );
-            box-shadow: $button-shadow;
+        &.k-no-focus:not(:hover) {
+            &::before {
+                opacity: 0;
+            }
         }
 
         // Pressed state
         &:active,
         &.k-state-active {
-            @include appearance( pressed-button );
             box-shadow: $button-pressed-shadow;
+
+            &::before {
+                opacity: .16;
+            }
         }
 
         // Disabled state
@@ -63,76 +82,25 @@
     // Primary button
     .k-button.k-primary {
         @include appearance( primary-button );
-
-        // Hovered state
-        &:hover,
-        &.k-state-hover {
-            @include appearance( hovered-primary-button );
-        }
-
-        // Focused
-        &:focus,
-        &.k-state-focused {
-            background-color: $primary-button-focused-bg;
-        }
-        &.k-no-focus {
-            background-color: $primary-button-bg;
-        }
-
-        // Active state
-        &:active,
-        &.k-state-active {
-            @include appearance( pressed-primary-button );
-        }
     }
 
-    // Flat button
-    .k-button.k-flat {
-        // Hover state
-        &:hover,
-        &.k-state-hover {
-            background-color: $flat-button-hovered-bg;
-        }
+    // Flat & Bare button
+    .k-button.k-flat,
+    .k-button.k-bare {
 
-        // Focused state
-        &:focus,
-        &.k-state-focused {
-            background-color: $flat-button-focused-bg;
-            box-shadow: none;
-        }
-        &.k-no-focus {
-            background-color: transparent;
-        }
-
-        // Pressed state
-        &:active,
-        &.k-state-active {
-            box-shadow: none;
-        }
-    }
-
-    // Flat primary button
-    .k-button.k-primary.k-flat {
-        color: $accent;
-
-        // Hover state
-        &:hover,
-        &.k-state-hover {
-            background-color: $flat-primary-hovered-bg;
+        &::after {
+            border-width: 0;
         }
 
         .k-ripple-blob {
             background-color: rgba($accent, .1);
         }
+    }
 
-        // Focused state
-        &:focus,
-        &.k-state-focused {
-            background-color: $flat-primary-focused-bg;
-        }
-        &.k-no-focus {
-            background: transparent;
-        }
+    // Flat & Bare Primary button
+    .k-button.k-primary.k-flat,
+    .k-button.k-primary.k-bare {
+        color: $primary-button-bg;
     }
 
     .k-button.k-flat,
@@ -145,62 +113,14 @@
 
     // Outline button
     .k-button.k-outline {
+        background: transparent;
         box-shadow: $outline-size;
         opacity: .87;
-
-        // Hover and focus states
-        &:hover,
-        &.k-state-hover,
-        &:focus {
-            box-shadow: $outline-size;
-
-            &::before {
-                background-color: currentColor;
-                opacity: .12;
-            }
-        }
-
-        &:focus {
-            background-color: transparent;
-        }
-
-        &.k-state-disabled {
-            background-color: transparent;
-            color: currentColor;
-            opacity: $button-disabled-opacity;
-        }
     }
 
+    // Outline Primary button
     .k-button.k-primary.k-outline {
         color: $primary-button-bg;
-
-        // Pressed state
-        &:active,
-        &.k-state-active {
-            background-color: transparent;
-        }
-
-        // Focused state
-        &:focus {
-            color: $accent;
-            background-color: transparent;
-        }
-    }
-
-    // Bare button
-    .k-button.k-bare {
-        &::after {
-            border-width: 0;
-        }
-
-        &.k-state-disabled {
-            color: inherit;
-            opacity: $button-disabled-opacity;
-        }
-
-        &.k-primary {
-            color: $accent;
-        }
     }
 
     // Button group
