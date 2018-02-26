@@ -442,6 +442,22 @@ $pager-padding-x: $toolbar-padding-x !default;
 $pager-padding-y: $toolbar-padding-y !default;
 
 
+// Card
+$card-padding-x: 16px !default;
+$card-padding-y: 12px !default;
+$card-border-radius: 12px !default;
+
+$card-deck-gutter: 16px !default;
+
+$card-bg: $panel-bg !default;
+$card-text: $panel-text !default;
+$card-border: $panel-border !default;
+
+$card-header-bg: $header-bg !default;
+$card-header-text: $header-text !default;
+$card-header-border: $header-border !default;
+
+
 // Chat
 $chat-padding-x: 16px !default;
 $chat-padding-y: 16px !default;

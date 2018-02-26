@@ -1,6 +1,18 @@
 @include exports("card/theme") {
 
+    // Card
     .k-card {
+        border-color: $card-border;
+        color: $card-text;
+        background-color: $card-bg;
+    }
+
+
+    // Header
+    .k-card-header {
+        border-color: $card-header-border;
+        color: $card-header-text;
+        background-color: $card-header-bg;
     }
 
 }

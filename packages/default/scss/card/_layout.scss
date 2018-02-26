@@ -1,12 +1,5 @@
 @include exports("card/layout") {
 
-    $card-border-radius: 16px !default;
-    $card-padding-x: 16px !default;
-    $card-padding-y: 16px !default;
-
-    $card-deck-gutter: 16px !default;
-
-
     // Card
     .k-card {
         @include border-radius( $card-border-radius );
@@ -19,6 +12,7 @@
 
     // Header
     .k-card-header {
+        @include border-top-radius( $card-border-radius );
         padding: $card-padding-y $card-padding-x;
         border-width: 0 0 1px;
         border-style: solid;
@@ -30,6 +24,20 @@
     .k-card-body {
         padding: $card-padding-y $card-padding-x;
         flex: 1 1 auto;
+    }
+
+
+    // Card title
+    .k-card-title {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+
+    // Card subtitle
+    .k-card-subtitle {
+        margin: 0;
+        font-size: 1.2em;
     }
 
 
@@ -61,6 +69,10 @@
         .k-card {
             @include border-radius(0);
             flex: 0 0 auto;
+
+            > .k-card-header {
+                @include border-radius(0);
+            }
         }
         .k-card + .k-card {
             margin-left: -1px;
@@ -70,12 +82,24 @@
         // Border-radius
         .k-card.k-first {
             @include border-left-radius( $card-border-radius );
+
+            > .k-card-header {
+                border-top-left-radius: $card-border-radius;
+            }
         }
         .k-card.k-last {
             @include border-right-radius( $card-border-radius );
+
+            > .k-card-header {
+                border-top-right-radius: $card-border-radius;
+            }
         }
         .k-card.k-only {
             @include border-radius( $card-border-radius );
+
+            > .k-card-header {
+                @include border-top-radius( $card-border-radius );
+            }
         }
     }
 
