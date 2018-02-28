@@ -1,5 +1,4 @@
 @include exports('button/layout') {
-    $bare-button-hover-opacity: .07 !default;
 
     // Button
     .k-button {
@@ -25,9 +24,13 @@
 
         // TODO: extend disabled selector
         &[disabled],
-        &.k-state-disabled:hover,
-        &.k-state-disabled:focus,
         [disabled] & {
+            @extend %disabled;
+        }
+        .k-ie9 &.k-state-disabled:hover,
+        .k-ie9 &.k-state-disabled:focus,
+        .k-ie10 &.k-state-disabled:hover,
+        .k-ie10 &.k-state-disabled:focus {
             @extend %disabled;
         }
 
@@ -79,9 +82,6 @@
 
     }
 
-    // Toggle button
-    .k-toggle-button {}
-
 
     // Split button
     .k-split-button {
@@ -128,7 +128,6 @@
 
         .k-button {
             @include border-radius( 0 );
-            position: relative;
         }
         .k-button ~ .k-button {
             margin-left: -$button-border-width;
@@ -140,11 +139,9 @@
             z-index: 2;
         }
 
-        &.k-state-disabled .k-button,
+        .k-button,
         [disabled],
-        .k-state-disabled,
-        .k-state-disabled:hover,
-        .k-state-disabled:focus {
+        .k-state-disabled {
             pointer-events: auto;
         }
 
